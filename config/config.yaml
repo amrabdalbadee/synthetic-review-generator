@@ -1,0 +1,247 @@
+# Synthetic Review Generator Configuration
+# Domain: Developer Tools & SaaS Products
+
+generation:
+  target_samples: 350
+  min_acceptable_samples: 300
+  max_retries_per_sample: 3
+  batch_size: 10
+  
+# Products to generate reviews for
+products:
+  - name: "CodeFlow IDE"
+    category: "IDE/Code Editor"
+    description: "AI-powered integrated development environment with intelligent code completion"
+    features: ["AI code completion", "Git integration", "Multi-language support", "Cloud sync", "Extensions marketplace"]
+    price_tier: "freemium"
+    
+  - name: "DeployMaster"
+    category: "DevOps/CI-CD"
+    description: "Automated deployment and CI/CD pipeline management platform"
+    features: ["One-click deployments", "Pipeline automation", "Rollback support", "Multi-cloud", "Container orchestration"]
+    price_tier: "paid"
+    
+  - name: "DataVault Pro"
+    category: "Database Management"
+    description: "Cloud-native database management and analytics platform"
+    features: ["Real-time analytics", "Auto-scaling", "SQL/NoSQL support", "Data visualization", "API access"]
+    price_tier: "enterprise"
+    
+  - name: "APIForge"
+    category: "API Development"
+    description: "API design, testing, and documentation platform"
+    features: ["OpenAPI support", "Mock servers", "Automated testing", "Documentation generation", "Team collaboration"]
+    price_tier: "freemium"
+    
+  - name: "CloudMetrics"
+    category: "Monitoring/Observability"
+    description: "Full-stack observability and monitoring solution"
+    features: ["APM", "Log aggregation", "Custom dashboards", "Alerting", "Distributed tracing"]
+    price_tier: "paid"
+
+# Personas for review generation
+personas:
+  - id: "senior_dev"
+    name: "Senior Developer"
+    experience_level: "expert"
+    priorities: ["performance", "scalability", "code quality", "documentation"]
+    tone: "technical"
+    typical_review_length: "medium"
+    weight: 0.25
+    
+  - id: "junior_dev"
+    name: "Junior Developer"
+    experience_level: "beginner"
+    priorities: ["ease of use", "learning resources", "community support", "affordability"]
+    tone: "casual"
+    typical_review_length: "short"
+    weight: 0.20
+    
+  - id: "tech_lead"
+    name: "Tech Lead / Engineering Manager"
+    experience_level: "expert"
+    priorities: ["team collaboration", "enterprise features", "security", "ROI"]
+    tone: "professional"
+    typical_review_length: "long"
+    weight: 0.15
+    
+  - id: "devops_engineer"
+    name: "DevOps Engineer"
+    experience_level: "intermediate"
+    priorities: ["automation", "integration", "reliability", "monitoring"]
+    tone: "technical"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "freelancer"
+    name: "Freelance Developer"
+    experience_level: "intermediate"
+    priorities: ["pricing", "portability", "time savings", "client deliverables"]
+    tone: "practical"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "startup_founder"
+    name: "Startup Founder / CTO"
+    experience_level: "expert"
+    priorities: ["speed to market", "cost efficiency", "scalability", "support"]
+    tone: "business-focused"
+    typical_review_length: "medium"
+    weight: 0.10
+
+# Rating distribution (should sum to 1.0)
+# Mimics realistic review distributions with slight positive skew
+rating_distribution:
+  1: 0.05   # Very negative
+  2: 0.10   # Negative
+  3: 0.20   # Neutral
+  4: 0.35   # Positive
+  5: 0.30   # Very positive
+
+# Review characteristics
+review_characteristics:
+  length:
+    short:
+      min_words: 20
+      max_words: 50
+      weight: 0.25
+    medium:
+      min_words: 50
+      max_words: 150
+      weight: 0.50
+    long:
+      min_words: 150
+      max_words: 300
+      weight: 0.25
+      
+  aspects_to_cover:
+    - "usability"
+    - "performance"
+    - "features"
+    - "pricing"
+    - "support"
+    - "documentation"
+    - "reliability"
+    - "integration"
+    
+  sentiment_markers:
+    positive:
+      - "love"
+      - "excellent"
+      - "amazing"
+      - "fantastic"
+      - "game-changer"
+      - "highly recommend"
+      - "best in class"
+      - "seamless"
+      - "intuitive"
+    negative:
+      - "frustrating"
+      - "disappointed"
+      - "buggy"
+      - "overpriced"
+      - "confusing"
+      - "slow"
+      - "unreliable"
+      - "poor support"
+      - "steep learning curve"
+    neutral:
+      - "decent"
+      - "average"
+      - "okay"
+      - "acceptable"
+      - "works as expected"
+      - "nothing special"
+
+# Quality guardrails thresholds
+quality_thresholds:
+  min_vocabulary_diversity: 0.3      # Unique words / total words ratio
+  max_semantic_similarity: 0.85      # Max allowed similarity between reviews
+  min_review_length_chars: 50
+  max_review_length_chars: 2000
+  required_domain_keywords_ratio: 0.1  # At least 10% domain relevance
+  sentiment_rating_alignment: 0.7    # Sentiment should match rating 70% of time
+  max_repetition_ratio: 0.15         # Max repeated phrases allowed
+
+# Domain-specific keywords for validation
+domain_keywords:
+  general:
+    - "software"
+    - "tool"
+    - "platform"
+    - "feature"
+    - "integration"
+    - "API"
+    - "workflow"
+    - "productivity"
+    - "team"
+    - "project"
+  technical:
+    - "deployment"
+    - "code"
+    - "debug"
+    - "performance"
+    - "scalability"
+    - "latency"
+    - "uptime"
+    - "documentation"
+    - "SDK"
+    - "CLI"
+  business:
+    - "pricing"
+    - "subscription"
+    - "enterprise"
+    - "support"
+    - "onboarding"
+    - "ROI"
+    - "cost"
+    - "value"
+
+# Model configuration
+models:
+  primary: "ollama"
+  fallback: "ollama"  # Can be changed to openai/anthropic when keys available
+  
+  ollama:
+    enabled: true
+    base_url: "http://localhost:11434"
+    models:
+      - name: "llama3.2"
+        priority: 1
+        temperature: 0.8
+        max_tokens: 500
+      - name: "mistral"
+        priority: 2
+        temperature: 0.7
+        max_tokens: 500
+      - name: "gemma2"
+        priority: 3
+        temperature: 0.75
+        max_tokens: 500
+        
+  openai:
+    enabled: false  # Set to true when API key available
+    models:
+      - name: "gpt-4o-mini"
+        priority: 1
+        temperature: 0.8
+        max_tokens: 500
+      - name: "gpt-3.5-turbo"
+        priority: 2
+        temperature: 0.8
+        max_tokens: 500
+        
+  anthropic:
+    enabled: false  # Set to true when API key available
+    models:
+      - name: "claude-3-haiku-20240307"
+        priority: 1
+        temperature: 0.8
+        max_tokens: 500
+
+# Output settings
+output:
+  format: "json"  # json, csv, or both
+  include_metadata: true
+  include_quality_scores: true
+  timestamp_format: "%Y-%m-%d %H:%M:%S"

@@ -1,0 +1,222 @@
+# Synthetic Review Generator Configuration
+# Domain: Health & Fitness Applications
+# 
+# This example shows how to configure review generation for health,
+# fitness, and wellness mobile applications.
+
+generation:
+  target_samples: 300
+  min_acceptable_samples: 250
+  max_retries_per_sample: 3
+  batch_size: 10
+
+# Health & Fitness products
+products:
+  - name: "FitTrack Pro"
+    category: "Fitness Tracking"
+    description: "Comprehensive fitness and workout tracking app with AI coaching"
+    features: ["Workout logging", "AI personal trainer", "Progress photos", "Nutrition tracking", "Wearable sync"]
+    price_tier: "freemium"
+    
+  - name: "MindfulMe"
+    category: "Meditation & Mental Health"
+    description: "Guided meditation and mental wellness application"
+    features: ["Guided meditations", "Sleep stories", "Mood tracking", "Breathing exercises", "Daily reminders"]
+    price_tier: "paid"
+    
+  - name: "NutriScan"
+    category: "Nutrition & Diet"
+    description: "AI-powered food scanner and nutrition tracker"
+    features: ["Barcode scanning", "Meal planning", "Calorie counting", "Macro tracking", "Recipe suggestions"]
+    price_tier: "freemium"
+    
+  - name: "SleepWell"
+    category: "Sleep Tracking"
+    description: "Advanced sleep monitoring and improvement app"
+    features: ["Sleep cycle tracking", "Smart alarm", "Sleep sounds", "Sleep score", "Snore detection"]
+    price_tier: "paid"
+    
+  - name: "RunRoute"
+    category: "Running & Cardio"
+    description: "GPS running tracker with social features"
+    features: ["GPS tracking", "Route planning", "Virtual races", "Social challenges", "Audio coaching"]
+    price_tier: "freemium"
+
+# Health & Fitness personas
+personas:
+  - id: "fitness_enthusiast"
+    name: "Fitness Enthusiast"
+    experience_level: "intermediate"
+    priorities: ["accurate tracking", "workout variety", "progress visualization", "community"]
+    tone: "enthusiastic"
+    typical_review_length: "medium"
+    weight: 0.25
+    
+  - id: "beginner_user"
+    name: "Fitness Beginner"
+    experience_level: "beginner"
+    priorities: ["easy to use", "guidance", "motivation", "not intimidating"]
+    tone: "casual"
+    typical_review_length: "short"
+    weight: 0.20
+    
+  - id: "health_conscious_parent"
+    name: "Health-Conscious Parent"
+    experience_level: "beginner"
+    priorities: ["family features", "time efficiency", "reliability", "value for money"]
+    tone: "practical"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "athlete"
+    name: "Competitive Athlete"
+    experience_level: "expert"
+    priorities: ["accuracy", "advanced metrics", "training plans", "performance analysis"]
+    tone: "technical"
+    typical_review_length: "long"
+    weight: 0.15
+    
+  - id: "weight_loss_journey"
+    name: "Weight Loss Journey"
+    experience_level: "beginner"
+    priorities: ["calorie tracking", "motivation", "progress photos", "community support"]
+    tone: "personal"
+    typical_review_length: "long"
+    weight: 0.15
+    
+  - id: "wellness_seeker"
+    name: "Wellness & Mindfulness Seeker"
+    experience_level: "intermediate"
+    priorities: ["stress relief", "meditation quality", "holistic approach", "offline access"]
+    tone: "reflective"
+    typical_review_length: "medium"
+    weight: 0.10
+
+# Rating distribution - health apps get emotional reviews
+rating_distribution:
+  1: 0.06
+  2: 0.09
+  3: 0.18
+  4: 0.32
+  5: 0.35
+
+# Review characteristics
+review_characteristics:
+  length:
+    short:
+      min_words: 20
+      max_words: 50
+      weight: 0.25
+    medium:
+      min_words: 50
+      max_words: 150
+      weight: 0.45
+    long:
+      min_words: 150
+      max_words: 350
+      weight: 0.30  # Health apps get more personal stories
+      
+  aspects_to_cover:
+    - "accuracy"
+    - "ease of use"
+    - "motivation"
+    - "tracking features"
+    - "battery usage"
+    - "sync reliability"
+    - "subscription value"
+    - "customer support"
+    
+  sentiment_markers:
+    positive:
+      - "life-changing"
+      - "lost weight"
+      - "feel better"
+      - "love this app"
+      - "highly motivating"
+      - "accurate tracking"
+      - "best fitness app"
+      - "transformed my health"
+      - "finally sleeping better"
+    negative:
+      - "drains battery"
+      - "inaccurate"
+      - "too expensive"
+      - "doesn't sync"
+      - "crashes constantly"
+      - "misleading free version"
+      - "lost my data"
+      - "annoying notifications"
+    neutral:
+      - "does the job"
+      - "basic features work"
+      - "average app"
+      - "okay for the price"
+      - "nothing groundbreaking"
+
+# Quality thresholds
+quality_thresholds:
+  min_vocabulary_diversity: 0.28
+  max_semantic_similarity: 0.82
+  min_review_length_chars: 50
+  max_review_length_chars: 2000
+  required_domain_keywords_ratio: 0.10
+  sentiment_rating_alignment: 0.72
+  max_repetition_ratio: 0.14
+
+# Health & Fitness domain keywords
+domain_keywords:
+  fitness:
+    - "workout"
+    - "exercise"
+    - "training"
+    - "gym"
+    - "fitness"
+    - "cardio"
+    - "strength"
+    - "reps"
+    - "sets"
+    - "routine"
+  health:
+    - "health"
+    - "weight"
+    - "calories"
+    - "nutrition"
+    - "diet"
+    - "sleep"
+    - "heart rate"
+    - "steps"
+    - "BMI"
+    - "wellness"
+  experience:
+    - "progress"
+    - "goals"
+    - "motivation"
+    - "tracking"
+    - "results"
+    - "improvement"
+    - "journey"
+    - "transformation"
+
+# Model configuration
+models:
+  primary: "ollama"
+  fallback: "ollama"
+  
+  ollama:
+    enabled: true
+    base_url: "http://localhost:11434"
+    models:
+      - name: "llama3.2"
+        priority: 1
+        temperature: 0.82
+        max_tokens: 500
+      - name: "mistral"
+        priority: 2
+        temperature: 0.78
+        max_tokens: 500
+
+output:
+  format: "json"
+  include_metadata: true
+  include_quality_scores: true
+  timestamp_format: "%Y-%m-%d %H:%M:%S"

@@ -1,0 +1,223 @@
+# Synthetic Review Generator Configuration
+# Domain: E-commerce & Online Shopping Platforms
+# 
+# This example configuration demonstrates how to set up review generation
+# for online shopping platforms and e-commerce tools.
+
+generation:
+  target_samples: 400
+  min_acceptable_samples: 350
+  max_retries_per_sample: 3
+  batch_size: 10
+
+# E-commerce products to generate reviews for
+products:
+  - name: "ShopEase"
+    category: "E-commerce Platform"
+    description: "All-in-one e-commerce platform for small to medium businesses"
+    features: ["Drag-and-drop store builder", "Payment processing", "Inventory management", "SEO tools", "Mobile app"]
+    price_tier: "freemium"
+    
+  - name: "CartGenius"
+    category: "Shopping Cart Software"
+    description: "Advanced shopping cart with AI-powered recommendations"
+    features: ["Smart recommendations", "Abandoned cart recovery", "Multi-currency", "Guest checkout", "Analytics"]
+    price_tier: "paid"
+    
+  - name: "InventoryPro"
+    category: "Inventory Management"
+    description: "Real-time inventory tracking and warehouse management"
+    features: ["Barcode scanning", "Multi-warehouse", "Low stock alerts", "Supplier management", "Forecasting"]
+    price_tier: "enterprise"
+    
+  - name: "PaySwift"
+    category: "Payment Gateway"
+    description: "Secure payment processing for online businesses"
+    features: ["Multiple payment methods", "Fraud detection", "Instant payouts", "Subscription billing", "Global coverage"]
+    price_tier: "paid"
+    
+  - name: "ReviewBoost"
+    category: "Review Management"
+    description: "Collect and manage customer reviews across platforms"
+    features: ["Review requests", "Response templates", "Sentiment analysis", "Widget integration", "Review syndication"]
+    price_tier: "freemium"
+
+# E-commerce personas
+personas:
+  - id: "small_business_owner"
+    name: "Small Business Owner"
+    experience_level: "beginner"
+    priorities: ["ease of use", "affordability", "quick setup", "customer support"]
+    tone: "practical"
+    typical_review_length: "medium"
+    weight: 0.25
+    
+  - id: "ecommerce_manager"
+    name: "E-commerce Manager"
+    experience_level: "intermediate"
+    priorities: ["conversion rates", "analytics", "integration", "scalability"]
+    tone: "professional"
+    typical_review_length: "long"
+    weight: 0.20
+    
+  - id: "dropshipper"
+    name: "Dropshipper"
+    experience_level: "intermediate"
+    priorities: ["supplier integration", "automation", "profit margins", "shipping"]
+    tone: "casual"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "marketing_specialist"
+    name: "Digital Marketing Specialist"
+    experience_level: "expert"
+    priorities: ["SEO", "conversion optimization", "email marketing", "retargeting"]
+    tone: "technical"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "retail_chain_buyer"
+    name: "Retail Chain Buyer"
+    experience_level: "expert"
+    priorities: ["bulk operations", "enterprise features", "compliance", "vendor management"]
+    tone: "business-focused"
+    typical_review_length: "long"
+    weight: 0.15
+    
+  - id: "side_hustle_seller"
+    name: "Side Hustle Seller"
+    experience_level: "beginner"
+    priorities: ["low cost", "simplicity", "mobile access", "quick profits"]
+    tone: "casual"
+    typical_review_length: "short"
+    weight: 0.10
+
+# Rating distribution - e-commerce tends to have more extreme ratings
+rating_distribution:
+  1: 0.08   # Very negative (shipping/fraud issues)
+  2: 0.12   # Negative
+  3: 0.15   # Neutral
+  4: 0.30   # Positive
+  5: 0.35   # Very positive
+
+# Review characteristics
+review_characteristics:
+  length:
+    short:
+      min_words: 15
+      max_words: 40
+      weight: 0.30
+    medium:
+      min_words: 40
+      max_words: 120
+      weight: 0.50
+    long:
+      min_words: 120
+      max_words: 250
+      weight: 0.20
+      
+  aspects_to_cover:
+    - "checkout process"
+    - "shipping speed"
+    - "payment options"
+    - "customer service"
+    - "product quality"
+    - "return policy"
+    - "website speed"
+    - "mobile experience"
+    
+  sentiment_markers:
+    positive:
+      - "fast shipping"
+      - "easy checkout"
+      - "great selection"
+      - "secure payment"
+      - "excellent service"
+      - "user-friendly"
+      - "best prices"
+      - "highly recommend"
+    negative:
+      - "slow delivery"
+      - "hidden fees"
+      - "poor quality"
+      - "no refund"
+      - "terrible support"
+      - "scam"
+      - "overpriced"
+      - "never again"
+    neutral:
+      - "average"
+      - "okay"
+      - "decent"
+      - "as expected"
+      - "nothing special"
+
+# Quality thresholds
+quality_thresholds:
+  min_vocabulary_diversity: 0.25
+  max_semantic_similarity: 0.80
+  min_review_length_chars: 40
+  max_review_length_chars: 1500
+  required_domain_keywords_ratio: 0.08
+  sentiment_rating_alignment: 0.75
+  max_repetition_ratio: 0.12
+
+# E-commerce domain keywords
+domain_keywords:
+  general:
+    - "shop"
+    - "store"
+    - "buy"
+    - "purchase"
+    - "order"
+    - "cart"
+    - "checkout"
+    - "product"
+    - "seller"
+    - "customer"
+  logistics:
+    - "shipping"
+    - "delivery"
+    - "tracking"
+    - "warehouse"
+    - "inventory"
+    - "stock"
+    - "returns"
+    - "refund"
+    - "package"
+    - "fulfillment"
+  payment:
+    - "payment"
+    - "price"
+    - "discount"
+    - "coupon"
+    - "credit card"
+    - "PayPal"
+    - "transaction"
+    - "fee"
+    - "subscription"
+    - "billing"
+
+# Model configuration (same as main config)
+models:
+  primary: "ollama"
+  fallback: "ollama"
+  
+  ollama:
+    enabled: true
+    base_url: "http://localhost:11434"
+    models:
+      - name: "llama3.2"
+        priority: 1
+        temperature: 0.85
+        max_tokens: 400
+      - name: "mistral"
+        priority: 2
+        temperature: 0.8
+        max_tokens: 400
+
+output:
+  format: "json"
+  include_metadata: true
+  include_quality_scores: true
+  timestamp_format: "%Y-%m-%d %H:%M:%S"

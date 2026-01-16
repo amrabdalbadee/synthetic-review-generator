@@ -1,0 +1,232 @@
+# Synthetic Review Generator Configuration
+# Domain: Restaurant & Food Delivery Services
+# 
+# This example demonstrates how to configure review generation
+# for restaurants, food delivery apps, and dining experiences.
+
+generation:
+  target_samples: 400
+  min_acceptable_samples: 350
+  max_retries_per_sample: 3
+  batch_size: 12
+
+# Restaurant & Food Delivery products
+products:
+  - name: "The Golden Fork"
+    category: "Fine Dining Restaurant"
+    description: "Upscale contemporary American cuisine with seasonal menus"
+    features: ["Tasting menu", "Wine pairing", "Private dining", "Chef's table", "Valet parking"]
+    price_tier: "enterprise"  # High-end
+    
+  - name: "QuickBite Express"
+    category: "Fast Casual Restaurant"
+    description: "Fresh and healthy fast casual with customizable bowls"
+    features: ["Build your own bowl", "Quick service", "Online ordering", "Loyalty rewards", "Dietary options"]
+    price_tier: "freemium"  # Affordable
+    
+  - name: "FoodDash"
+    category: "Food Delivery App"
+    description: "On-demand food delivery from local restaurants"
+    features: ["Real-time tracking", "No minimum order", "Subscription plan", "Contactless delivery", "Group ordering"]
+    price_tier: "freemium"
+    
+  - name: "MealKit Magic"
+    category: "Meal Kit Service"
+    description: "Weekly meal kit delivery with chef-designed recipes"
+    features: ["Pre-portioned ingredients", "Recipe cards", "Flexible plans", "Skip weeks", "Dietary preferences"]
+    price_tier: "paid"
+    
+  - name: "Sushi Sakura"
+    category: "Japanese Restaurant"
+    description: "Authentic Japanese sushi and omakase experience"
+    features: ["Fresh fish daily", "Omakase menu", "Sake selection", "Sushi bar seating", "Reservations required"]
+    price_tier: "paid"
+    
+  - name: "Mama Rosa's Pizzeria"
+    category: "Casual Italian Restaurant"
+    description: "Family-owned Italian restaurant with wood-fired pizzas"
+    features: ["Wood-fired oven", "Family recipes", "Outdoor seating", "Takeout available", "Catering"]
+    price_tier: "freemium"
+
+# Restaurant & Food personas
+personas:
+  - id: "foodie"
+    name: "Food Enthusiast/Foodie"
+    experience_level: "expert"
+    priorities: ["food quality", "unique flavors", "presentation", "authenticity"]
+    tone: "descriptive"
+    typical_review_length: "long"
+    weight: 0.20
+    
+  - id: "busy_professional"
+    name: "Busy Professional"
+    experience_level: "intermediate"
+    priorities: ["speed", "convenience", "consistency", "value"]
+    tone: "practical"
+    typical_review_length: "short"
+    weight: 0.20
+    
+  - id: "family_diner"
+    name: "Family with Kids"
+    experience_level: "beginner"
+    priorities: ["kid-friendly", "portion sizes", "cleanliness", "price"]
+    tone: "practical"
+    typical_review_length: "medium"
+    weight: 0.20
+    
+  - id: "date_night"
+    name: "Date Night Couple"
+    experience_level: "intermediate"
+    priorities: ["ambiance", "romantic setting", "service", "special occasions"]
+    tone: "romantic"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "health_conscious"
+    name: "Health-Conscious Diner"
+    experience_level: "intermediate"
+    priorities: ["healthy options", "ingredient quality", "dietary accommodations", "freshness"]
+    tone: "informed"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "budget_diner"
+    name: "Budget-Conscious Diner"
+    experience_level: "beginner"
+    priorities: ["price", "portion size", "deals", "bang for buck"]
+    tone: "straightforward"
+    typical_review_length: "short"
+    weight: 0.10
+
+# Rating distribution - restaurants get many reviews
+rating_distribution:
+  1: 0.08   # Bad experiences get reviewed
+  2: 0.10
+  3: 0.17
+  4: 0.35
+  5: 0.30
+
+# Review characteristics
+review_characteristics:
+  length:
+    short:
+      min_words: 15
+      max_words: 45
+      weight: 0.30
+    medium:
+      min_words: 45
+      max_words: 120
+      weight: 0.50
+    long:
+      min_words: 120
+      max_words: 300
+      weight: 0.20
+      
+  aspects_to_cover:
+    - "food quality"
+    - "service"
+    - "ambiance"
+    - "price/value"
+    - "wait time"
+    - "cleanliness"
+    - "portion size"
+    - "delivery speed"
+    
+  sentiment_markers:
+    positive:
+      - "delicious"
+      - "amazing food"
+      - "best ever"
+      - "mouthwatering"
+      - "excellent service"
+      - "highly recommend"
+      - "will be back"
+      - "hidden gem"
+      - "perfect"
+    negative:
+      - "cold food"
+      - "rude staff"
+      - "overpriced"
+      - "long wait"
+      - "disappointing"
+      - "never again"
+      - "food poisoning"
+      - "terrible service"
+      - "bland"
+    neutral:
+      - "okay"
+      - "average"
+      - "decent"
+      - "nothing special"
+      - "it's fine"
+      - "edible"
+
+# Quality thresholds
+quality_thresholds:
+  min_vocabulary_diversity: 0.25
+  max_semantic_similarity: 0.80
+  min_review_length_chars: 35
+  max_review_length_chars: 1800
+  required_domain_keywords_ratio: 0.10
+  sentiment_rating_alignment: 0.72
+  max_repetition_ratio: 0.15
+
+# Restaurant & Food domain keywords
+domain_keywords:
+  food:
+    - "food"
+    - "dish"
+    - "meal"
+    - "menu"
+    - "taste"
+    - "flavor"
+    - "portion"
+    - "appetizer"
+    - "entree"
+    - "dessert"
+  service:
+    - "service"
+    - "staff"
+    - "waiter"
+    - "server"
+    - "delivery"
+    - "order"
+    - "reservation"
+    - "wait"
+    - "table"
+    - "tip"
+  quality:
+    - "fresh"
+    - "delicious"
+    - "quality"
+    - "authentic"
+    - "homemade"
+    - "cooked"
+    - "prepared"
+    - "ingredients"
+    - "presentation"
+    - "temperature"
+
+# Model configuration
+models:
+  primary: "ollama"
+  fallback: "ollama"
+  
+  ollama:
+    enabled: true
+    base_url: "http://localhost:11434"
+    models:
+      - name: "llama3.2"
+        priority: 1
+        temperature: 0.85
+        max_tokens: 400
+      - name: "mistral"
+        priority: 2
+        temperature: 0.82
+        max_tokens: 400
+
+output:
+  format: "json"
+  include_metadata: true
+  include_quality_scores: true
+  timestamp_format: "%Y-%m-%d %H:%M:%S"

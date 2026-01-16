@@ -1,0 +1,230 @@
+# Synthetic Review Generator Configuration
+# Domain: Education & Online Learning Platforms
+# 
+# This example shows configuration for online courses, educational apps,
+# and e-learning platforms.
+
+generation:
+  target_samples: 350
+  min_acceptable_samples: 300
+  max_retries_per_sample: 3
+  batch_size: 10
+
+# Education & Learning products
+products:
+  - name: "SkillMaster Pro"
+    category: "Online Course Platform"
+    description: "Comprehensive online learning platform with expert-led courses"
+    features: ["Video courses", "Certificates", "Quizzes", "Mobile app", "Offline access"]
+    price_tier: "paid"
+    
+  - name: "LangLeap"
+    category: "Language Learning"
+    description: "AI-powered language learning with native speaker practice"
+    features: ["Speech recognition", "Native conversations", "Gamification", "Spaced repetition", "40+ languages"]
+    price_tier: "freemium"
+    
+  - name: "CodeCamp Academy"
+    category: "Coding Bootcamp"
+    description: "Interactive coding courses from beginner to advanced"
+    features: ["Interactive exercises", "Project-based learning", "Code review", "Career support", "Mentorship"]
+    price_tier: "paid"
+    
+  - name: "KidsBrainBox"
+    category: "Children's Education"
+    description: "Educational games and activities for children ages 3-12"
+    features: ["Age-appropriate content", "Progress tracking", "Parental dashboard", "Ad-free", "Offline mode"]
+    price_tier: "freemium"
+    
+  - name: "ExamPrep Plus"
+    category: "Test Preparation"
+    description: "Comprehensive test prep for standardized exams"
+    features: ["Practice tests", "Score prediction", "Study plans", "Video explanations", "Performance analytics"]
+    price_tier: "paid"
+    
+  - name: "MicroLearn"
+    category: "Microlearning"
+    description: "Bite-sized lessons for busy professionals"
+    features: ["5-minute lessons", "Daily streaks", "Skill assessments", "LinkedIn integration", "Team plans"]
+    price_tier: "freemium"
+
+# Education personas
+personas:
+  - id: "career_changer"
+    name: "Career Changer"
+    experience_level: "beginner"
+    priorities: ["job relevance", "certificates", "practical skills", "career support"]
+    tone: "determined"
+    typical_review_length: "long"
+    weight: 0.20
+    
+  - id: "college_student"
+    name: "College Student"
+    experience_level: "intermediate"
+    priorities: ["affordability", "exam prep", "flexibility", "quality content"]
+    tone: "casual"
+    typical_review_length: "medium"
+    weight: 0.20
+    
+  - id: "working_professional"
+    name: "Working Professional"
+    experience_level: "intermediate"
+    priorities: ["time efficiency", "applicable skills", "mobile access", "credibility"]
+    tone: "professional"
+    typical_review_length: "medium"
+    weight: 0.20
+    
+  - id: "parent_educator"
+    name: "Parent/Home Educator"
+    experience_level: "beginner"
+    priorities: ["child safety", "educational value", "engagement", "progress tracking"]
+    tone: "caring"
+    typical_review_length: "medium"
+    weight: 0.15
+    
+  - id: "lifelong_learner"
+    name: "Lifelong Learner"
+    experience_level: "expert"
+    priorities: ["content depth", "variety", "instructor quality", "community"]
+    tone: "thoughtful"
+    typical_review_length: "long"
+    weight: 0.15
+    
+  - id: "corporate_trainer"
+    name: "Corporate Trainer/L&D Manager"
+    experience_level: "expert"
+    priorities: ["team management", "reporting", "scalability", "compliance"]
+    tone: "business-focused"
+    typical_review_length: "long"
+    weight: 0.10
+
+# Rating distribution - education tends toward positive (people finish courses they like)
+rating_distribution:
+  1: 0.04
+  2: 0.08
+  3: 0.18
+  4: 0.38
+  5: 0.32
+
+# Review characteristics
+review_characteristics:
+  length:
+    short:
+      min_words: 25
+      max_words: 60
+      weight: 0.20
+    medium:
+      min_words: 60
+      max_words: 180
+      weight: 0.55
+    long:
+      min_words: 180
+      max_words: 400
+      weight: 0.25
+      
+  aspects_to_cover:
+    - "course content"
+    - "instructor quality"
+    - "practical applications"
+    - "certificate value"
+    - "learning pace"
+    - "support/community"
+    - "platform usability"
+    - "price/value"
+    
+  sentiment_markers:
+    positive:
+      - "learned so much"
+      - "excellent instructor"
+      - "changed my career"
+      - "highly recommend"
+      - "well-structured"
+      - "engaging content"
+      - "worth the investment"
+      - "got the job"
+      - "best course"
+    negative:
+      - "outdated content"
+      - "boring lectures"
+      - "not worth the price"
+      - "poor quality"
+      - "no support"
+      - "waste of money"
+      - "certificate worthless"
+      - "too basic"
+      - "confusing"
+    neutral:
+      - "decent"
+      - "okay course"
+      - "as expected"
+      - "average"
+      - "nothing special"
+      - "could be better"
+
+# Quality thresholds
+quality_thresholds:
+  min_vocabulary_diversity: 0.30
+  max_semantic_similarity: 0.82
+  min_review_length_chars: 60
+  max_review_length_chars: 2500
+  required_domain_keywords_ratio: 0.12
+  sentiment_rating_alignment: 0.75
+  max_repetition_ratio: 0.12
+
+# Education domain keywords
+domain_keywords:
+  learning:
+    - "learn"
+    - "course"
+    - "lesson"
+    - "module"
+    - "curriculum"
+    - "content"
+    - "instructor"
+    - "teacher"
+    - "lecture"
+    - "tutorial"
+  outcomes:
+    - "certificate"
+    - "skill"
+    - "knowledge"
+    - "progress"
+    - "completion"
+    - "exam"
+    - "quiz"
+    - "assessment"
+    - "grade"
+    - "career"
+  experience:
+    - "easy to follow"
+    - "hands-on"
+    - "practical"
+    - "engaging"
+    - "interactive"
+    - "beginner-friendly"
+    - "advanced"
+    - "comprehensive"
+
+# Model configuration
+models:
+  primary: "ollama"
+  fallback: "ollama"
+  
+  ollama:
+    enabled: true
+    base_url: "http://localhost:11434"
+    models:
+      - name: "llama3.2"
+        priority: 1
+        temperature: 0.75
+        max_tokens: 500
+      - name: "mistral"
+        priority: 2
+        temperature: 0.72
+        max_tokens: 500
+
+output:
+  format: "json"
+  include_metadata: true
+  include_quality_scores: true
+  timestamp_format: "%Y-%m-%d %H:%M:%S"
