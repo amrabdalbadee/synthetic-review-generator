@@ -1,0 +1,90 @@
+{
+  "dataset_metrics": {},
+  "generation_stats": {
+    "total_generated": 29,
+    "acceptance_rate": 1.0,
+    "total_time": 0,
+    "avg_time_per_review": 0
+  },
+  "comparison_metrics": {
+    "vocabulary": {
+      "synthetic_vocab_size": 657,
+      "real_vocab_size": 566,
+      "vocab_overlap": 0.221,
+      "synthetic_unique_words": 436,
+      "real_unique_words": 345,
+      "shared_words": 221
+    },
+    "length": {
+      "synthetic_avg_length": 614.5,
+      "real_avg_length": 168.9,
+      "length_difference": 445.5
+    },
+    "sentiment": {
+      "synthetic_distribution": {
+        "positive": 0.586,
+        "neutral": 0.379,
+        "negative": 0.034
+      },
+      "real_distribution": {
+        "neutral": 0.933,
+        "negative": 0.022,
+        "positive": 0.044
+      },
+      "similarity": 0.583
+    },
+    "rating": {
+      "synthetic_distribution": {
+        "5": 0.379,
+        "4": 0.276,
+        "3": 0.207,
+        "2": 0.069,
+        "1": 0.069
+      },
+      "real_distribution": {
+        "5": 0.333,
+        "4": 0.244,
+        "2": 0.111,
+        "3": 0.244,
+        "1": 0.067
+      },
+      "similarity": 0.989
+    },
+    "ngrams": {
+      "bigram_overlap": 0.043,
+      "trigram_overlap": 0.008
+    },
+    "realism_score": 0.391
+  },
+  "bias_analysis": {
+    "sentiment_skew": {
+      "positive": 0.8275862068965517,
+      "negative": 0.10344827586206896,
+      "neutral": 0.06896551724137931
+    },
+    "rating_bias": {
+      "average": 3.8275862068965516,
+      "distribution": {
+        "5": 11,
+        "4": 8,
+        "3": 6,
+        "2": 2,
+        "1": 2
+      }
+    },
+    "length_bias": {
+      "average": 614.4827586206897,
+      "min": 303,
+      "max": 966,
+      "std": 227.9038848664445
+    },
+    "vocabulary_concentration": {
+      "unique_words": 657,
+      "total_words": 2440,
+      "top_10_coverage": 0.20245901639344263
+    },
+    "issues": [
+      "Excessive positive sentiment bias"
+    ]
+  }
+}

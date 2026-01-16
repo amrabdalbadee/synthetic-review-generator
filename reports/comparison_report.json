@@ -1,0 +1,50 @@
+{
+  "vocabulary": {
+    "synthetic_vocab_size": 657,
+    "real_vocab_size": 566,
+    "vocab_overlap": 0.221,
+    "synthetic_unique_words": 436,
+    "real_unique_words": 345,
+    "shared_words": 221
+  },
+  "length": {
+    "synthetic_avg_length": 614.5,
+    "real_avg_length": 168.9,
+    "length_difference": 445.5
+  },
+  "sentiment": {
+    "synthetic_distribution": {
+      "positive": 0.586,
+      "neutral": 0.379,
+      "negative": 0.034
+    },
+    "real_distribution": {
+      "neutral": 0.933,
+      "negative": 0.022,
+      "positive": 0.044
+    },
+    "similarity": 0.583
+  },
+  "rating": {
+    "synthetic_distribution": {
+      "5": 0.379,
+      "4": 0.276,
+      "3": 0.207,
+      "2": 0.069,
+      "1": 0.069
+    },
+    "real_distribution": {
+      "5": 0.333,
+      "4": 0.244,
+      "2": 0.111,
+      "3": 0.244,
+      "1": 0.067
+    },
+    "similarity": 0.989
+  },
+  "ngrams": {
+    "bigram_overlap": 0.043,
+    "trigram_overlap": 0.008
+  },
+  "realism_score": 0.391
+}
